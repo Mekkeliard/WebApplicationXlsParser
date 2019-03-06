@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <h3>Изменить путь к файлу:</h3>
+        <fieldset>
+            <p>
+                <input type="text" name="path" />
+                <input type="submit" />
+            </p>
+        </fieldset>
+    }
+
+    <h3>Тендеры</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Название тендера</th>
+                <th>Дата начала</th>
+                <th>Дата окончания</th>
+                <th>Ссылка на тендер</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (WebApplicationXlsParser.Models.Tenders t in Model)
+            {
+                <tr>
+                    <td><p>@t.NameTender</p></td>
+                    <td><p>@t.DateTimeFrom.ToString("d")</p></td>
+                    <td><p>@t.DateTimeTo.ToString("d")</p></td>
+                    <td><p><a href="@t.UrlTender">URL</a></p></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
